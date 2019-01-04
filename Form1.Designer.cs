@@ -35,6 +35,9 @@
             this.CONNECT_BUTTON = new System.Windows.Forms.Button();
             this.SERIAL_READ = new System.Windows.Forms.TextBox();
             this.READ_BUTTON = new System.Windows.Forms.Button();
+            this.WRITE_BUTTON = new System.Windows.Forms.Button();
+            this.SERIAL_WRITE = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -93,7 +96,7 @@
             // 
             // CONNECT_BUTTON
             // 
-            this.CONNECT_BUTTON.Location = new System.Drawing.Point(267, 23);
+            this.CONNECT_BUTTON.Location = new System.Drawing.Point(267, 24);
             this.CONNECT_BUTTON.Name = "CONNECT_BUTTON";
             this.CONNECT_BUTTON.Size = new System.Drawing.Size(75, 23);
             this.CONNECT_BUTTON.TabIndex = 4;
@@ -120,11 +123,40 @@
             this.READ_BUTTON.UseVisualStyleBackColor = true;
             this.READ_BUTTON.Click += new System.EventHandler(this.READ_BUTTON_Click);
             // 
+            // WRITE_BUTTON
+            // 
+            this.WRITE_BUTTON.Location = new System.Drawing.Point(713, 415);
+            this.WRITE_BUTTON.Name = "WRITE_BUTTON";
+            this.WRITE_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.WRITE_BUTTON.TabIndex = 7;
+            this.WRITE_BUTTON.Text = "WRITE";
+            this.WRITE_BUTTON.UseVisualStyleBackColor = true;
+            this.WRITE_BUTTON.Click += new System.EventHandler(this.WRITE_BUTTON_Click);
+            // 
+            // SERIAL_WRITE
+            // 
+            this.SERIAL_WRITE.Location = new System.Drawing.Point(432, 417);
+            this.SERIAL_WRITE.Name = "SERIAL_WRITE";
+            this.SERIAL_WRITE.Size = new System.Drawing.Size(275, 20);
+            this.SERIAL_WRITE.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(454, 401);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(95, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "INPUT MESSAGE";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.SERIAL_WRITE);
+            this.Controls.Add(this.WRITE_BUTTON);
             this.Controls.Add(this.READ_BUTTON);
             this.Controls.Add(this.SERIAL_READ);
             this.Controls.Add(this.CONNECT_BUTTON);
@@ -149,6 +181,9 @@
         private System.Windows.Forms.Button CONNECT_BUTTON;
         private System.Windows.Forms.TextBox SERIAL_READ;
         private System.Windows.Forms.Button READ_BUTTON;
+        private System.Windows.Forms.Button WRITE_BUTTON;
+        private System.Windows.Forms.TextBox SERIAL_WRITE;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -9,7 +9,7 @@ namespace SimpleArduinoSerialMonitor
         private ArduinoMonitor am;
         private string com_name;
         private int baud_rate;
-
+        #region VS Generated Methods
         public Form1()
         {
             InitializeComponent();
@@ -35,25 +35,11 @@ namespace SimpleArduinoSerialMonitor
         private void CONNECT_BUTTON_Click(object sender, EventArgs e)
         {
             am = new ArduinoMonitor(com_name, baud_rate);
-            if(am.OpenPort()){
-                READ_BUTTON.Enabled = true;
-            }
-        }
-
-        private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
-        {
-            SetText(e.message);
-        }
-
-        private void SetText(string text)
-        {
-            if (InvokeRequired)
+            if(am.OpenPort())
             {
-                Invoke(new Action<string>(SetText), text);
-                return;
+                READ_BUTTON.Enabled = true;
+                WRITE_BUTTON.Enabled = true;
             }
-            SERIAL_READ.AppendText(text);
-            SERIAL_READ.AppendText(Environment.NewLine);
         }
 
         private void READ_BUTTON_Click(object sender, EventArgs e)
@@ -64,6 +50,34 @@ namespace SimpleArduinoSerialMonitor
         private void Form1_Load(object sender, EventArgs e)
         {
             READ_BUTTON.Enabled = false;
+            WRITE_BUTTON.Enabled = false;
+        }
+
+        private void WRITE_BUTTON_Click(object sender, EventArgs e)
+        {
+            am.WriteToArduino(SERIAL_WRITE.Text);
+        }
+        #endregion
+
+        private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
+        {
+            SetText(e.message);
+        }
+
+        private void SetText(string text)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action<string>(SetText), text);
+                    return;
+                }
+                SERIAL_READ.AppendText(text);
+                SERIAL_READ.AppendText(Environment.NewLine);
+            }
+            catch(System.ObjectDisposedException)
+            { return; }
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO.Ports;
 
 namespace SimpleArduinoSerialMonitor
@@ -25,14 +21,26 @@ namespace SimpleArduinoSerialMonitor
             return serial_port.IsOpen;
         }
 
-        private void DataReceivedHandler(object sender,SerialDataReceivedEventArgs e)
+        public bool ClosePort()
+        {
+            serial_port.Close();
+            return serial_port.IsOpen;
+        }
+
+        public void WriteToArduino(string message)
+        {
+            serial_port.Write(message);
+        }
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
                 ArduinoSerialReadEventArgs asre = new ArduinoSerialReadEventArgs();
                 asre.message = serial_port.ReadLine();
                 ardEvent?.Invoke(this, asre);
-            } catch (System.IO.IOException) { return; }
+            }
+            catch (System.IO.IOException) { return; }
         }
     }
 
