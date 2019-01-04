@@ -9,8 +9,9 @@ namespace SimpleArduinoSerialMonitor
 {
     class ArduinoMonitor
     {
+        public event EventHandler<ArduinoSerialReadEventArgs> ardEvent;
         SerialPort serial_port = null;
-        static string Message { get; set; }
+        string Message { get; set; }
 
         public ArduinoMonitor(string com_name, int baud_rate)
         {
@@ -18,21 +19,20 @@ namespace SimpleArduinoSerialMonitor
             serial_port.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
         }
 
-        public void OpenPort()
+        public bool OpenPort()
         {
             serial_port.Open();
+            return serial_port.IsOpen;
         }
 
-        public string ReadFromArduino()
+        private void DataReceivedHandler(object sender,SerialDataReceivedEventArgs e)
         {
-            return Message;
-        }
-
-        private static void DataReceivedHandler(object sender,SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            Message = sp.ReadLine();
-            System.Diagnostics.Debug.WriteLine(sp.ReadLine());
+            try
+            {
+                ArduinoSerialReadEventArgs asre = new ArduinoSerialReadEventArgs();
+                asre.message = serial_port.ReadLine();
+                ardEvent?.Invoke(this, asre);
+            } catch (System.IO.IOException) { return; }
         }
     }
 

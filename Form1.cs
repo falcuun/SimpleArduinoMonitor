@@ -35,13 +35,35 @@ namespace SimpleArduinoSerialMonitor
         private void CONNECT_BUTTON_Click(object sender, EventArgs e)
         {
             am = new ArduinoMonitor(com_name, baud_rate);
-            am.OpenPort();
+            if(am.OpenPort()){
+                READ_BUTTON.Enabled = true;
+            }
+        }
 
+        private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
+        {
+            SetText(e.message);
         }
 
         private void SetText(string text)
         {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(SetText), text);
+                return;
+            }
+            SERIAL_READ.AppendText(text);
+            SERIAL_READ.AppendText(Environment.NewLine);
+        }
 
+        private void READ_BUTTON_Click(object sender, EventArgs e)
+        {
+            am.ardEvent += ArduinoSerialReadEventHandler;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            READ_BUTTON.Enabled = false;
         }
     }
 }

@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.CONNECT_BUTTON = new System.Windows.Forms.Button();
+            this.SERIAL_READ = new System.Windows.Forms.TextBox();
+            this.READ_BUTTON = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -99,11 +101,32 @@
             this.CONNECT_BUTTON.UseVisualStyleBackColor = true;
             this.CONNECT_BUTTON.Click += new System.EventHandler(this.CONNECT_BUTTON_Click);
             // 
+            // SERIAL_READ
+            // 
+            this.SERIAL_READ.Location = new System.Drawing.Point(8, 295);
+            this.SERIAL_READ.Multiline = true;
+            this.SERIAL_READ.Name = "SERIAL_READ";
+            this.SERIAL_READ.ReadOnly = true;
+            this.SERIAL_READ.Size = new System.Drawing.Size(334, 143);
+            this.SERIAL_READ.TabIndex = 5;
+            // 
+            // READ_BUTTON
+            // 
+            this.READ_BUTTON.Location = new System.Drawing.Point(8, 266);
+            this.READ_BUTTON.Name = "READ_BUTTON";
+            this.READ_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.READ_BUTTON.TabIndex = 6;
+            this.READ_BUTTON.Text = "READ";
+            this.READ_BUTTON.UseVisualStyleBackColor = true;
+            this.READ_BUTTON.Click += new System.EventHandler(this.READ_BUTTON_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.READ_BUTTON);
+            this.Controls.Add(this.SERIAL_READ);
             this.Controls.Add(this.CONNECT_BUTTON);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -111,6 +134,7 @@
             this.Controls.Add(this.COM_NAMES);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,6 +147,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button CONNECT_BUTTON;
+        private System.Windows.Forms.TextBox SERIAL_READ;
+        private System.Windows.Forms.Button READ_BUTTON;
     }
 }
 
