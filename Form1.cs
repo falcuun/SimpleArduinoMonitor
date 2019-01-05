@@ -37,8 +37,10 @@ namespace SimpleArduinoSerialMonitor
             am = new ArduinoMonitor(com_name, baud_rate);
             if(am.OpenPort())
             {
+                DISCONNECT_BUTTON.Enabled = true;
                 READ_BUTTON.Enabled = true;
                 WRITE_BUTTON.Enabled = true;
+                CONNECT_BUTTON.Enabled = false;
             }
         }
 
@@ -49,6 +51,7 @@ namespace SimpleArduinoSerialMonitor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            DISCONNECT_BUTTON.Enabled = false;
             READ_BUTTON.Enabled = false;
             WRITE_BUTTON.Enabled = false;
         }
@@ -78,6 +81,15 @@ namespace SimpleArduinoSerialMonitor
             }
             catch(System.ObjectDisposedException)
             { return; }
+        }
+
+        private void DISCONNECT_BUTTON_Click(object sender, EventArgs e)
+        {
+            if(am.ClosePort())
+            {
+                CONNECT_BUTTON.Enabled = true;
+                DISCONNECT_BUTTON.Enabled = false;
+            }
         }
     }
 }

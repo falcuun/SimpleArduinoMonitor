@@ -24,7 +24,14 @@ namespace SimpleArduinoSerialMonitor
         public bool ClosePort()
         {
             serial_port.Close();
-            return serial_port.IsOpen;
+            if(serial_port.IsOpen)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public void WriteToArduino(string message)

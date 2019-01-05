@@ -38,6 +38,7 @@
             this.WRITE_BUTTON = new System.Windows.Forms.Button();
             this.SERIAL_WRITE = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.DISCONNECT_BUTTON = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -149,11 +150,22 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "INPUT MESSAGE";
             // 
+            // DISCONNECT_BUTTON
+            // 
+            this.DISCONNECT_BUTTON.Location = new System.Drawing.Point(349, 24);
+            this.DISCONNECT_BUTTON.Name = "DISCONNECT_BUTTON";
+            this.DISCONNECT_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.DISCONNECT_BUTTON.TabIndex = 12;
+            this.DISCONNECT_BUTTON.Text = "Disconnect";
+            this.DISCONNECT_BUTTON.UseVisualStyleBackColor = true;
+            this.DISCONNECT_BUTTON.Click += new System.EventHandler(this.DISCONNECT_BUTTON_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.DISCONNECT_BUTTON);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.SERIAL_WRITE);
             this.Controls.Add(this.WRITE_BUTTON);
@@ -184,6 +196,7 @@
         private System.Windows.Forms.Button WRITE_BUTTON;
         private System.Windows.Forms.TextBox SERIAL_WRITE;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button DISCONNECT_BUTTON;
     }
 }
 
