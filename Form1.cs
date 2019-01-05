@@ -10,6 +10,7 @@ namespace SimpleArduinoSerialMonitor
         private ArduinoMonitor am;
         private string com_name;
         private int baud_rate;
+        private bool TextWasChanged = false;
         private OpenFileDialog opf = new OpenFileDialog();
 
         #region VS Generated Methods
@@ -71,6 +72,14 @@ namespace SimpleArduinoSerialMonitor
             SetTextFile(e.message);
         }
 
+        private void WriteToFileEventHandler(object sender, ArduinoSerialReadEventArgs e)
+        {
+            WriteToFile(e.message);
+        }
+
+        /*TODO 1:
+         Add a way to stop writing to file before disconnecting.
+             */
         private void SetText(string text)
         {
             try
@@ -106,11 +115,20 @@ namespace SimpleArduinoSerialMonitor
         {
             if (File.Exists(FILE_PATH_BOX.Text))
             {
+                ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
                 using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
                 {
-                    tw.Write(text);
+                    if (TextWasChanged)
+                    {
+                        tw.Write(text);
+                    }
                 }
             }
+        }
+
+        private void ONE_LINE_READ_TEXTCHANGED(object sender, EventArgs e)
+        {
+            TextWasChanged = true;
         }
 
         private void DISCONNECT_BUTTON_Click(object sender, EventArgs e)
@@ -122,12 +140,15 @@ namespace SimpleArduinoSerialMonitor
             }
         }
 
-
+        /*TODO 2: 
+         Add a way to enter file path and create a new file if it doesn't exist 
+             
+             */
         private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
         {
             opf.ShowDialog();
             FILE_PATH_BOX.Text = opf.FileName;
-            SetTextFile(ONE_LINE_READ.Text);
+            am.ardEvent += WriteToFileEventHandler;
         }
     }
 }
