@@ -1,0 +1,10 @@
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\bin\Debug\SimpleArduinoSerialMonitor.exe.config
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\bin\Debug\SimpleArduinoSerialMonitor.exe
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\bin\Debug\SimpleArduinoSerialMonitor.pdb
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.csprojAssemblyReference.cache
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.Form1.resources
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.Properties.Resources.resources
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.csproj.GenerateResource.cache
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.csproj.CoreCompileInputs.cache
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.exe
+C:\Users\falcu\source\repos\SimpleArduinoSerialMonitor\SimpleArduinoSerialMonitor\obj\Debug\SimpleArduinoSerialMonitor.pdb

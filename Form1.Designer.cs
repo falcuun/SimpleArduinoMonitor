@@ -39,6 +39,9 @@
             this.SERIAL_WRITE = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.DISCONNECT_BUTTON = new System.Windows.Forms.Button();
+            this.WRITE_TO_FILE_BUTTON = new System.Windows.Forms.Button();
+            this.ONE_LINE_READ = new System.Windows.Forms.TextBox();
+            this.FILE_PATH_BOX = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -160,11 +163,40 @@
             this.DISCONNECT_BUTTON.UseVisualStyleBackColor = true;
             this.DISCONNECT_BUTTON.Click += new System.EventHandler(this.DISCONNECT_BUTTON_Click);
             // 
+            // WRITE_TO_FILE_BUTTON
+            // 
+            this.WRITE_TO_FILE_BUTTON.Location = new System.Drawing.Point(611, 266);
+            this.WRITE_TO_FILE_BUTTON.Name = "WRITE_TO_FILE_BUTTON";
+            this.WRITE_TO_FILE_BUTTON.Size = new System.Drawing.Size(96, 23);
+            this.WRITE_TO_FILE_BUTTON.TabIndex = 13;
+            this.WRITE_TO_FILE_BUTTON.Text = "SAVE TO FILE";
+            this.WRITE_TO_FILE_BUTTON.UseVisualStyleBackColor = true;
+            this.WRITE_TO_FILE_BUTTON.Click += new System.EventHandler(this.WRITE_TO_FILE_BUTTON_Click);
+            // 
+            // ONE_LINE_READ
+            // 
+            this.ONE_LINE_READ.Location = new System.Drawing.Point(432, 321);
+            this.ONE_LINE_READ.Name = "ONE_LINE_READ";
+            this.ONE_LINE_READ.ReadOnly = true;
+            this.ONE_LINE_READ.Size = new System.Drawing.Size(275, 20);
+            this.ONE_LINE_READ.TabIndex = 14;
+            // 
+            // FILE_PATH_BOX
+            // 
+            this.FILE_PATH_BOX.Location = new System.Drawing.Point(432, 295);
+            this.FILE_PATH_BOX.Name = "FILE_PATH_BOX";
+            this.FILE_PATH_BOX.ReadOnly = true;
+            this.FILE_PATH_BOX.Size = new System.Drawing.Size(275, 20);
+            this.FILE_PATH_BOX.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.FILE_PATH_BOX);
+            this.Controls.Add(this.ONE_LINE_READ);
+            this.Controls.Add(this.WRITE_TO_FILE_BUTTON);
             this.Controls.Add(this.DISCONNECT_BUTTON);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.SERIAL_WRITE);
@@ -197,6 +229,9 @@
         private System.Windows.Forms.TextBox SERIAL_WRITE;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button DISCONNECT_BUTTON;
+        private System.Windows.Forms.Button WRITE_TO_FILE_BUTTON;
+        private System.Windows.Forms.TextBox ONE_LINE_READ;
+        private System.Windows.Forms.TextBox FILE_PATH_BOX;
     }
 }
 

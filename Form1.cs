@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.IO;
 using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace SimpleArduinoSerialMonitor
 {
@@ -9,6 +10,8 @@ namespace SimpleArduinoSerialMonitor
         private ArduinoMonitor am;
         private string com_name;
         private int baud_rate;
+        private OpenFileDialog opf = new OpenFileDialog();
+
         #region VS Generated Methods
         public Form1()
         {
@@ -29,13 +32,13 @@ namespace SimpleArduinoSerialMonitor
 
         private void BAUD_RATES_SelectedIndexChanged(object sender, EventArgs e)
         {
-            baud_rate = Int32.Parse(BAUD_RATES.GetItemText(BAUD_RATES.SelectedItem));
+            baud_rate = int.Parse(BAUD_RATES.GetItemText(BAUD_RATES.SelectedItem));
         }
 
         private void CONNECT_BUTTON_Click(object sender, EventArgs e)
         {
             am = new ArduinoMonitor(com_name, baud_rate);
-            if(am.OpenPort())
+            if (am.OpenPort())
             {
                 DISCONNECT_BUTTON.Enabled = true;
                 READ_BUTTON.Enabled = true;
@@ -65,6 +68,7 @@ namespace SimpleArduinoSerialMonitor
         private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
         {
             SetText(e.message);
+            SetTextFile(e.message);
         }
 
         private void SetText(string text)
@@ -79,17 +83,51 @@ namespace SimpleArduinoSerialMonitor
                 SERIAL_READ.AppendText(text);
                 SERIAL_READ.AppendText(Environment.NewLine);
             }
-            catch(System.ObjectDisposedException)
+            catch (System.ObjectDisposedException)
             { return; }
+        }
+
+        private void SetTextFile(string text)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action<string>(SetTextFile), text);
+                    return;
+                }
+                ONE_LINE_READ.Text = text;
+            }
+            catch (System.ObjectDisposedException)
+            { return; }
+        }
+
+        private void WriteToFile(string text)
+        {
+            if (File.Exists(FILE_PATH_BOX.Text))
+            {
+                using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
+                {
+                    tw.Write(text);
+                }
+            }
         }
 
         private void DISCONNECT_BUTTON_Click(object sender, EventArgs e)
         {
-            if(am.ClosePort())
+            if (am.ClosePort())
             {
                 CONNECT_BUTTON.Enabled = true;
                 DISCONNECT_BUTTON.Enabled = false;
             }
+        }
+
+
+        private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
+        {
+            opf.ShowDialog();
+            FILE_PATH_BOX.Text = opf.FileName;
+            SetTextFile(ONE_LINE_READ.Text);
         }
     }
 }
