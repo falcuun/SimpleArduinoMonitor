@@ -43,6 +43,7 @@
             this.ONE_LINE_READ = new System.Windows.Forms.TextBox();
             this.FILE_PATH_BOX = new System.Windows.Forms.TextBox();
             this.STOP_READING_BUTTON = new System.Windows.Forms.Button();
+            this.WRITE_ONE_LINE_FILE = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -189,7 +190,7 @@
             this.FILE_PATH_BOX.Name = "FILE_PATH_BOX";
             this.FILE_PATH_BOX.Size = new System.Drawing.Size(275, 20);
             this.FILE_PATH_BOX.TabIndex = 15;
-            this.FILE_PATH_BOX.KeyDown += new System.Windows.Forms.KeyEventHandler(OnKeyDownHandler);
+            this.FILE_PATH_BOX.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownHandler);
             // 
             // STOP_READING_BUTTON
             // 
@@ -201,11 +202,22 @@
             this.STOP_READING_BUTTON.UseVisualStyleBackColor = true;
             this.STOP_READING_BUTTON.Click += new System.EventHandler(this.STOP_READING_BUTTON_Click);
             // 
+            // WRITE_ONE_LINE_FILE
+            // 
+            this.WRITE_ONE_LINE_FILE.AutoSize = true;
+            this.WRITE_ONE_LINE_FILE.Location = new System.Drawing.Point(490, 270);
+            this.WRITE_ONE_LINE_FILE.Name = "WRITE_ONE_LINE_FILE";
+            this.WRITE_ONE_LINE_FILE.Size = new System.Drawing.Size(115, 17);
+            this.WRITE_ONE_LINE_FILE.TabIndex = 17;
+            this.WRITE_ONE_LINE_FILE.Text = "WRITE ONE LINE";
+            this.WRITE_ONE_LINE_FILE.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.WRITE_ONE_LINE_FILE);
             this.Controls.Add(this.STOP_READING_BUTTON);
             this.Controls.Add(this.FILE_PATH_BOX);
             this.Controls.Add(this.ONE_LINE_READ);
@@ -246,6 +258,7 @@
         private System.Windows.Forms.TextBox ONE_LINE_READ;
         private System.Windows.Forms.TextBox FILE_PATH_BOX;
         private System.Windows.Forms.Button STOP_READING_BUTTON;
+        private System.Windows.Forms.CheckBox WRITE_ONE_LINE_FILE;
     }
 }
 

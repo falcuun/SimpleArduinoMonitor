@@ -30,23 +30,36 @@ namespace SimpleArduinoSerialMonitor
         private void COM_NAMES_SelectedIndexChanged(object sender, EventArgs e)
         {
             com_name = COM_NAMES.GetItemText(COM_NAMES.SelectedItem);
+            if (!BAUD_RATES.Text.Equals(""))
+            {
+                CONNECT_BUTTON.Enabled = true;
+            }
         }
 
         private void BAUD_RATES_SelectedIndexChanged(object sender, EventArgs e)
         {
             baud_rate = int.Parse(BAUD_RATES.GetItemText(BAUD_RATES.SelectedItem));
+            if (!COM_NAMES.Text.Equals(""))
+            {
+                CONNECT_BUTTON.Enabled = true;
+            }
         }
 
         private void CONNECT_BUTTON_Click(object sender, EventArgs e)
         {
-            am = new ArduinoMonitor(com_name, baud_rate);
-            if (am.OpenPort())
+            if (!COM_NAMES.Text.Equals("") && !BAUD_RATES.Text.Equals(""))
             {
-                DISCONNECT_BUTTON.Enabled = true;
-                READ_BUTTON.Enabled = true;
-                WRITE_BUTTON.Enabled = true;
-                CONNECT_BUTTON.Enabled = false;
+                am = new ArduinoMonitor(com_name, baud_rate);
+                if (am.OpenPort())
+                {
+                    DISCONNECT_BUTTON.Enabled = true;
+                    READ_BUTTON.Enabled = true;
+                    WRITE_BUTTON.Enabled = true;
+                    CONNECT_BUTTON.Enabled = false;
+                }
             }
+            else
+                SERIAL_READ.Text = "You need to pick COM name and Baud Rate";
         }
 
         private void READ_BUTTON_Click(object sender, EventArgs e)
@@ -68,6 +81,7 @@ namespace SimpleArduinoSerialMonitor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            CONNECT_BUTTON.Enabled = false;
             DISCONNECT_BUTTON.Enabled = false;
             READ_BUTTON.Enabled = false;
             WRITE_BUTTON.Enabled = false;
@@ -169,16 +183,32 @@ namespace SimpleArduinoSerialMonitor
          */
         private void WriteToFile(string text)
         {
-            if (!file_path.Equals(""))
+
+
+            if (WRITE_ONE_LINE_FILE.Checked)
             {
-                if (File.Exists(file_path))
+                if (!file_path.Equals(""))
                 {
-                    ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
-                    using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
+                    if (File.Exists(file_path))
                     {
-                        if (TextWasChanged)
+                        ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
+                        File.WriteAllText(file_path, text);
+                    }
+                }
+            }
+            else 
+            {
+                if (!file_path.Equals(""))
+                {
+                    if (File.Exists(file_path))
+                    {
+                        ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
+                        using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
                         {
-                            tw.Write(text);
+                            if (TextWasChanged)
+                            {
+                                tw.Write(text);
+                            }
                         }
                     }
                 }
