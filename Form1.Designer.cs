@@ -187,9 +187,9 @@
             // 
             this.FILE_PATH_BOX.Location = new System.Drawing.Point(432, 295);
             this.FILE_PATH_BOX.Name = "FILE_PATH_BOX";
-            this.FILE_PATH_BOX.ReadOnly = true;
             this.FILE_PATH_BOX.Size = new System.Drawing.Size(275, 20);
             this.FILE_PATH_BOX.TabIndex = 15;
+            this.FILE_PATH_BOX.KeyDown += new System.Windows.Forms.KeyEventHandler(OnKeyDownHandler);
             // 
             // STOP_READING_BUTTON
             // 

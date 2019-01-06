@@ -9,6 +9,7 @@ namespace SimpleArduinoSerialMonitor
     {
         private ArduinoMonitor am;
         private string com_name;
+        private string file_path;
         private int baud_rate;
         private bool TextWasChanged = false;
         private OpenFileDialog opf = new OpenFileDialog();
@@ -50,6 +51,7 @@ namespace SimpleArduinoSerialMonitor
 
         private void READ_BUTTON_Click(object sender, EventArgs e)
         {
+            am.ardEvent -= ArduinoSerialReadEventHandler;
             am.ardEvent += ArduinoSerialReadEventHandler;
             READ_BUTTON.Enabled = false;
             STOP_READING_BUTTON.Enabled = true;
@@ -95,30 +97,45 @@ namespace SimpleArduinoSerialMonitor
         private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
         {
             opf.ShowDialog();
-            FILE_PATH_BOX.Text = opf.FileName;
+            file_path = opf.FileName;
+            FILE_PATH_BOX.Text = file_path;
+            am.ardEvent -= WriteToFileEventHandler;
             am.ardEvent += WriteToFileEventHandler;
         }
 
         #endregion
 
+        #region User Defined Methods
+
+        /*
+         * Event Handler For Appending text to  SERIAL_READ and ONE_LINE_READ text boxes, enabling the methods to append text continiously as long as Arduino (Serial Port) is sending messages to the Serial Port.
+         */
         private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
         {
-            SetText(e.message);
-            SetTextFile(e.message);
+            SERIAL_READ_SET_TEXT(e.message);
+            ONE_LINE_READ_SET_TEXT(e.message);
         }
 
+
+        /*
+         * Event Handler For Writing to file, enabling the method to write to file continiously as long as Arduino (Serial Port) is sending messages to the Serial Port.
+         */
         private void WriteToFileEventHandler(object sender, ArduinoSerialReadEventArgs e)
         {
             WriteToFile(e.message);
         }
 
-        private void SetText(string text)
+
+        /*
+         * Appends the argument Text to SERIAL_READ TextBox and appends a new line after each appended line
+         */
+        private void SERIAL_READ_SET_TEXT(string text)
         {
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<string>(SetText), text);
+                    Invoke(new Action<string>(SERIAL_READ_SET_TEXT), text);
                     return;
                 }
                 SERIAL_READ.AppendText(text);
@@ -128,13 +145,16 @@ namespace SimpleArduinoSerialMonitor
             { return; }
         }
 
-        private void SetTextFile(string text)
+        /*
+         * Sets the Text inside the ONE_LINE_READ TextBox to the passed text in the method's argument. 
+         */
+        private void ONE_LINE_READ_SET_TEXT(string text)
         {
             try
             {
                 if (InvokeRequired)
                 {
-                    Invoke(new Action<string>(SetTextFile), text);
+                    Invoke(new Action<string>(ONE_LINE_READ_SET_TEXT), text);
                     return;
                 }
                 ONE_LINE_READ.Text = text;
@@ -143,25 +163,55 @@ namespace SimpleArduinoSerialMonitor
             { return; }
         }
 
+        /*
+         * Writes Text to a file chosen by the user. File Path obtained from FILE_PATH_BOX TextBox from the Form 
+         * And passed as the path for file to be written to
+         */
         private void WriteToFile(string text)
         {
-            string file_name = FILE_PATH_BOX.Text;
-            if (File.Exists(FILE_PATH_BOX.Text))
+            if (!file_path.Equals(""))
             {
-                ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
-                using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
+                if (File.Exists(file_path))
                 {
-                    if (TextWasChanged)
+                    ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
+                    using (StreamWriter tw = new StreamWriter(FILE_PATH_BOX.Text, true))
                     {
-                        tw.Write(text);
+                        if (TextWasChanged)
+                        {
+                            tw.Write(text);
+                        }
                     }
+                }
+                else
+                {
+                    File.Create(file_path);
+                    WriteToFile(text);
                 }
             }
         }
 
+        /*
+         * Event For The One Line read Textbox checking if the Text inside it has changed
+         */
         private void ONE_LINE_READ_TEXTCHANGED(object sender, EventArgs e)
         {
             TextWasChanged = true;
         }
+
+
+        /*
+         * Event Handler for Key_Down Event on FILE_PATH TextBox
+         */
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                file_path = FILE_PATH_BOX.Text;
+                am.ardEvent -= WriteToFileEventHandler;
+                am.ardEvent += WriteToFileEventHandler;
+            }
+        }
+
+        #endregion
     }
 }
