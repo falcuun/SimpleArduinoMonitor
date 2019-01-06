@@ -51,6 +51,17 @@ namespace SimpleArduinoSerialMonitor
         private void READ_BUTTON_Click(object sender, EventArgs e)
         {
             am.ardEvent += ArduinoSerialReadEventHandler;
+            READ_BUTTON.Enabled = false;
+            STOP_READING_BUTTON.Enabled = true;
+        }
+
+
+        private void STOP_READING_BUTTON_Click(object sender, EventArgs e)
+        {
+            am.ardEvent -= ArduinoSerialReadEventHandler;
+            am.ardEvent -= WriteToFileEventHandler;
+            READ_BUTTON.Enabled = true;
+            STOP_READING_BUTTON.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -58,12 +69,36 @@ namespace SimpleArduinoSerialMonitor
             DISCONNECT_BUTTON.Enabled = false;
             READ_BUTTON.Enabled = false;
             WRITE_BUTTON.Enabled = false;
+            STOP_READING_BUTTON.Enabled = false;
         }
 
         private void WRITE_BUTTON_Click(object sender, EventArgs e)
         {
             am.WriteToArduino(SERIAL_WRITE.Text);
         }
+
+
+        private void DISCONNECT_BUTTON_Click(object sender, EventArgs e)
+        {
+            if (am.ClosePort())
+            {
+                CONNECT_BUTTON.Enabled = true;
+                DISCONNECT_BUTTON.Enabled = false;
+            }
+        }
+
+        /*TODO 2: 
+         Add a way to enter file path and create a new file if it doesn't exist 
+         TODO 3: 
+         
+             */
+        private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
+        {
+            opf.ShowDialog();
+            FILE_PATH_BOX.Text = opf.FileName;
+            am.ardEvent += WriteToFileEventHandler;
+        }
+
         #endregion
 
         private void ArduinoSerialReadEventHandler(object sender, ArduinoSerialReadEventArgs e)
@@ -77,9 +112,6 @@ namespace SimpleArduinoSerialMonitor
             WriteToFile(e.message);
         }
 
-        /*TODO 1:
-         Add a way to stop writing to file before disconnecting.
-             */
         private void SetText(string text)
         {
             try
@@ -113,6 +145,7 @@ namespace SimpleArduinoSerialMonitor
 
         private void WriteToFile(string text)
         {
+            string file_name = FILE_PATH_BOX.Text;
             if (File.Exists(FILE_PATH_BOX.Text))
             {
                 ONE_LINE_READ.TextChanged += ONE_LINE_READ_TEXTCHANGED;
@@ -129,26 +162,6 @@ namespace SimpleArduinoSerialMonitor
         private void ONE_LINE_READ_TEXTCHANGED(object sender, EventArgs e)
         {
             TextWasChanged = true;
-        }
-
-        private void DISCONNECT_BUTTON_Click(object sender, EventArgs e)
-        {
-            if (am.ClosePort())
-            {
-                CONNECT_BUTTON.Enabled = true;
-                DISCONNECT_BUTTON.Enabled = false;
-            }
-        }
-
-        /*TODO 2: 
-         Add a way to enter file path and create a new file if it doesn't exist 
-             
-             */
-        private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
-        {
-            opf.ShowDialog();
-            FILE_PATH_BOX.Text = opf.FileName;
-            am.ardEvent += WriteToFileEventHandler;
         }
     }
 }

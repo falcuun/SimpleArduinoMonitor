@@ -42,6 +42,7 @@
             this.WRITE_TO_FILE_BUTTON = new System.Windows.Forms.Button();
             this.ONE_LINE_READ = new System.Windows.Forms.TextBox();
             this.FILE_PATH_BOX = new System.Windows.Forms.TextBox();
+            this.STOP_READING_BUTTON = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -114,6 +115,7 @@
             this.SERIAL_READ.Multiline = true;
             this.SERIAL_READ.Name = "SERIAL_READ";
             this.SERIAL_READ.ReadOnly = true;
+            this.SERIAL_READ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.SERIAL_READ.Size = new System.Drawing.Size(334, 143);
             this.SERIAL_READ.TabIndex = 5;
             // 
@@ -189,11 +191,22 @@
             this.FILE_PATH_BOX.Size = new System.Drawing.Size(275, 20);
             this.FILE_PATH_BOX.TabIndex = 15;
             // 
+            // STOP_READING_BUTTON
+            // 
+            this.STOP_READING_BUTTON.Location = new System.Drawing.Point(89, 266);
+            this.STOP_READING_BUTTON.Name = "STOP_READING_BUTTON";
+            this.STOP_READING_BUTTON.Size = new System.Drawing.Size(109, 23);
+            this.STOP_READING_BUTTON.TabIndex = 16;
+            this.STOP_READING_BUTTON.Text = "STOP READING";
+            this.STOP_READING_BUTTON.UseVisualStyleBackColor = true;
+            this.STOP_READING_BUTTON.Click += new System.EventHandler(this.STOP_READING_BUTTON_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.STOP_READING_BUTTON);
             this.Controls.Add(this.FILE_PATH_BOX);
             this.Controls.Add(this.ONE_LINE_READ);
             this.Controls.Add(this.WRITE_TO_FILE_BUTTON);
@@ -232,6 +245,7 @@
         private System.Windows.Forms.Button WRITE_TO_FILE_BUTTON;
         private System.Windows.Forms.TextBox ONE_LINE_READ;
         private System.Windows.Forms.TextBox FILE_PATH_BOX;
+        private System.Windows.Forms.Button STOP_READING_BUTTON;
     }
 }
 
