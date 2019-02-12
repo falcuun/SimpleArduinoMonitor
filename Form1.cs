@@ -67,6 +67,7 @@ namespace SimpleArduinoSerialMonitor
             am.ardEvent -= ArduinoSerialReadEventHandler;
             am.ardEvent += ArduinoSerialReadEventHandler;
             READ_BUTTON.Enabled = false;
+            CLEAR_OUTPUT_BUTTON.Enabled = false;
             STOP_READING_BUTTON.Enabled = true;
         }
 
@@ -76,6 +77,7 @@ namespace SimpleArduinoSerialMonitor
             am.ardEvent -= ArduinoSerialReadEventHandler;
             am.ardEvent -= WriteToFileEventHandler;
             READ_BUTTON.Enabled = true;
+            CLEAR_OUTPUT_BUTTON.Enabled = true;
             STOP_READING_BUTTON.Enabled = false;
         }
 
@@ -86,6 +88,7 @@ namespace SimpleArduinoSerialMonitor
             READ_BUTTON.Enabled = false;
             WRITE_BUTTON.Enabled = false;
             STOP_READING_BUTTON.Enabled = false;
+            CLEAR_OUTPUT_BUTTON.Enabled = false;
         }
 
         private void WRITE_BUTTON_Click(object sender, EventArgs e)
@@ -102,12 +105,6 @@ namespace SimpleArduinoSerialMonitor
                 DISCONNECT_BUTTON.Enabled = false;
             }
         }
-
-        /*TODO 2: 
-         Add a way to enter file path and create a new file if it doesn't exist 
-         TODO 3: 
-         
-             */
         private void WRITE_TO_FILE_BUTTON_Click(object sender, EventArgs e)
         {
             opf.ShowDialog();
@@ -243,5 +240,25 @@ namespace SimpleArduinoSerialMonitor
         }
 
         #endregion
+
+        private void OUTPUT_CLEAR_TEXT(string text)
+        {
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new Action<string>(OUTPUT_CLEAR_TEXT), text);
+                    return;
+                }
+                ONE_LINE_READ.Text = text;
+            }
+            catch (System.ObjectDisposedException)
+            { return; }
+        }
+
+        private void CLEAR_OUTPUT_BUTTON_Click(object sender, EventArgs e)
+        {
+            OUTPUT_CLEAR_TEXT("");
+        }
     }
 }

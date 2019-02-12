@@ -44,6 +44,7 @@
             this.FILE_PATH_BOX = new System.Windows.Forms.TextBox();
             this.STOP_READING_BUTTON = new System.Windows.Forms.Button();
             this.WRITE_ONE_LINE_FILE = new System.Windows.Forms.CheckBox();
+            this.CLEAR_OUTPUT_BUTTON = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // COM_NAMES
@@ -212,11 +213,22 @@
             this.WRITE_ONE_LINE_FILE.Text = "WRITE ONE LINE";
             this.WRITE_ONE_LINE_FILE.UseVisualStyleBackColor = true;
             // 
+            // CLEAR_OUTPUT_BUTTON
+            // 
+            this.CLEAR_OUTPUT_BUTTON.Location = new System.Drawing.Point(205, 266);
+            this.CLEAR_OUTPUT_BUTTON.Name = "CLEAR_OUTPUT_BUTTON";
+            this.CLEAR_OUTPUT_BUTTON.Size = new System.Drawing.Size(137, 23);
+            this.CLEAR_OUTPUT_BUTTON.TabIndex = 18;
+            this.CLEAR_OUTPUT_BUTTON.Text = "CLEAR OUTPUT";
+            this.CLEAR_OUTPUT_BUTTON.UseVisualStyleBackColor = true;
+            this.CLEAR_OUTPUT_BUTTON.Click += new System.EventHandler(this.CLEAR_OUTPUT_BUTTON_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CLEAR_OUTPUT_BUTTON);
             this.Controls.Add(this.WRITE_ONE_LINE_FILE);
             this.Controls.Add(this.STOP_READING_BUTTON);
             this.Controls.Add(this.FILE_PATH_BOX);
@@ -259,6 +271,7 @@
         private System.Windows.Forms.TextBox FILE_PATH_BOX;
         private System.Windows.Forms.Button STOP_READING_BUTTON;
         private System.Windows.Forms.CheckBox WRITE_ONE_LINE_FILE;
+        private System.Windows.Forms.Button CLEAR_OUTPUT_BUTTON;
     }
 }
 
