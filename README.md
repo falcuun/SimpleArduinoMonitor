@@ -14,6 +14,6 @@ it for the user and provide an option to save the obtained value to a text file 
   - Click on 'Write To File' Button and select file to append data to 
   - To Save as a single line, check the "Write one Line" checkbox
  To send data:
-  - Write the data you want to send in "send data" box, and hit 'write' button
+  - Write the data you want to send in "send data" box, and hit 'write' button.
   
  
