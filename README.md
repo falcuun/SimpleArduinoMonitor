@@ -17,3 +17,4 @@ it for the user and provide an option to save the obtained value to a text file 
   - Write the data you want to send in "send data" box, and hit 'write' button.
   
  
+   
