@@ -29,193 +29,66 @@
         private void InitializeComponent()
         {
             this.COM_NAMES = new System.Windows.Forms.ComboBox();
-            this.BAUD_RATES = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CONNECT_BUTTON = new System.Windows.Forms.Button();
-            this.SERIAL_READ = new System.Windows.Forms.TextBox();
-            this.READ_BUTTON = new System.Windows.Forms.Button();
+            this.OutputScreenTextView = new System.Windows.Forms.TextBox();
             this.WRITE_BUTTON = new System.Windows.Forms.Button();
             this.SERIAL_WRITE = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.DISCONNECT_BUTTON = new System.Windows.Forms.Button();
-            this.WRITE_TO_FILE_BUTTON = new System.Windows.Forms.Button();
-            this.ONE_LINE_READ = new System.Windows.Forms.TextBox();
-            this.FILE_PATH_BOX = new System.Windows.Forms.TextBox();
-            this.STOP_READING_BUTTON = new System.Windows.Forms.Button();
-            this.WRITE_ONE_LINE_FILE = new System.Windows.Forms.CheckBox();
             this.CLEAR_OUTPUT_BUTTON = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BaudRateInputBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // COM_NAMES
             // 
             this.COM_NAMES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.COM_NAMES.FormattingEnabled = true;
-            this.COM_NAMES.Location = new System.Drawing.Point(12, 26);
+            this.COM_NAMES.Location = new System.Drawing.Point(58, 306);
             this.COM_NAMES.Name = "COM_NAMES";
             this.COM_NAMES.Size = new System.Drawing.Size(121, 21);
             this.COM_NAMES.TabIndex = 0;
-            this.COM_NAMES.SelectedIndexChanged += new System.EventHandler(this.COM_NAMES_SelectedIndexChanged);
             this.COM_NAMES.Click += new System.EventHandler(this.comboBox1_Click);
-            // 
-            // BAUD_RATES
-            // 
-            this.BAUD_RATES.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BAUD_RATES.FormattingEnabled = true;
-            this.BAUD_RATES.Items.AddRange(new object[] {
-            "110",
-            "300",
-            "600",
-            "1200",
-            "2400",
-            "4800",
-            "9600",
-            "14400",
-            "19200",
-            "38400",
-            "57600",
-            "115200",
-            "128000",
-            "256000"});
-            this.BAUD_RATES.Location = new System.Drawing.Point(139, 26);
-            this.BAUD_RATES.Name = "BAUD_RATES";
-            this.BAUD_RATES.Size = new System.Drawing.Size(121, 21);
-            this.BAUD_RATES.TabIndex = 1;
-            this.BAUD_RATES.SelectedIndexChanged += new System.EventHandler(this.BAUD_RATES_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "COM NAMES";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(157, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "BAUD RATES";
-            // 
-            // CONNECT_BUTTON
-            // 
-            this.CONNECT_BUTTON.Location = new System.Drawing.Point(267, 24);
-            this.CONNECT_BUTTON.Name = "CONNECT_BUTTON";
-            this.CONNECT_BUTTON.Size = new System.Drawing.Size(75, 23);
-            this.CONNECT_BUTTON.TabIndex = 4;
-            this.CONNECT_BUTTON.Text = "Connect";
-            this.CONNECT_BUTTON.UseVisualStyleBackColor = true;
-            this.CONNECT_BUTTON.Click += new System.EventHandler(this.CONNECT_BUTTON_Click);
             // 
             // SERIAL_READ
             // 
-            this.SERIAL_READ.Location = new System.Drawing.Point(8, 295);
-            this.SERIAL_READ.Multiline = true;
-            this.SERIAL_READ.Name = "SERIAL_READ";
-            this.SERIAL_READ.ReadOnly = true;
-            this.SERIAL_READ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.SERIAL_READ.Size = new System.Drawing.Size(334, 143);
-            this.SERIAL_READ.TabIndex = 5;
-            // 
-            // READ_BUTTON
-            // 
-            this.READ_BUTTON.Location = new System.Drawing.Point(8, 266);
-            this.READ_BUTTON.Name = "READ_BUTTON";
-            this.READ_BUTTON.Size = new System.Drawing.Size(75, 23);
-            this.READ_BUTTON.TabIndex = 6;
-            this.READ_BUTTON.Text = "READ";
-            this.READ_BUTTON.UseVisualStyleBackColor = true;
-            this.READ_BUTTON.Click += new System.EventHandler(this.READ_BUTTON_Click);
+            this.OutputScreenTextView.Location = new System.Drawing.Point(12, 12);
+            this.OutputScreenTextView.Multiline = true;
+            this.OutputScreenTextView.Name = "SERIAL_READ";
+            this.OutputScreenTextView.ReadOnly = true;
+            this.OutputScreenTextView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.OutputScreenTextView.Size = new System.Drawing.Size(776, 288);
+            this.OutputScreenTextView.TabIndex = 5;
             // 
             // WRITE_BUTTON
             // 
-            this.WRITE_BUTTON.Location = new System.Drawing.Point(713, 415);
+            this.WRITE_BUTTON.Location = new System.Drawing.Point(713, 375);
             this.WRITE_BUTTON.Name = "WRITE_BUTTON";
             this.WRITE_BUTTON.Size = new System.Drawing.Size(75, 23);
             this.WRITE_BUTTON.TabIndex = 7;
-            this.WRITE_BUTTON.Text = "WRITE";
+            this.WRITE_BUTTON.Text = "SEND";
             this.WRITE_BUTTON.UseVisualStyleBackColor = true;
             this.WRITE_BUTTON.Click += new System.EventHandler(this.WRITE_BUTTON_Click);
             // 
             // SERIAL_WRITE
             // 
-            this.SERIAL_WRITE.Location = new System.Drawing.Point(432, 417);
+            this.SERIAL_WRITE.Location = new System.Drawing.Point(15, 375);
             this.SERIAL_WRITE.Name = "SERIAL_WRITE";
-            this.SERIAL_WRITE.Size = new System.Drawing.Size(275, 20);
+            this.SERIAL_WRITE.Size = new System.Drawing.Size(672, 20);
             this.SERIAL_WRITE.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(454, 401);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "INPUT MESSAGE";
             // 
             // DISCONNECT_BUTTON
             // 
-            this.DISCONNECT_BUTTON.Location = new System.Drawing.Point(349, 24);
+            this.DISCONNECT_BUTTON.Location = new System.Drawing.Point(713, 306);
             this.DISCONNECT_BUTTON.Name = "DISCONNECT_BUTTON";
-            this.DISCONNECT_BUTTON.Size = new System.Drawing.Size(75, 23);
+            this.DISCONNECT_BUTTON.Size = new System.Drawing.Size(75, 59);
             this.DISCONNECT_BUTTON.TabIndex = 12;
-            this.DISCONNECT_BUTTON.Text = "Disconnect";
+            this.DISCONNECT_BUTTON.Text = "OPEN";
             this.DISCONNECT_BUTTON.UseVisualStyleBackColor = true;
             this.DISCONNECT_BUTTON.Click += new System.EventHandler(this.DISCONNECT_BUTTON_Click);
             // 
-            // WRITE_TO_FILE_BUTTON
-            // 
-            this.WRITE_TO_FILE_BUTTON.Location = new System.Drawing.Point(611, 266);
-            this.WRITE_TO_FILE_BUTTON.Name = "WRITE_TO_FILE_BUTTON";
-            this.WRITE_TO_FILE_BUTTON.Size = new System.Drawing.Size(96, 23);
-            this.WRITE_TO_FILE_BUTTON.TabIndex = 13;
-            this.WRITE_TO_FILE_BUTTON.Text = "SAVE TO FILE";
-            this.WRITE_TO_FILE_BUTTON.UseVisualStyleBackColor = true;
-            this.WRITE_TO_FILE_BUTTON.Click += new System.EventHandler(this.WRITE_TO_FILE_BUTTON_Click);
-            // 
-            // ONE_LINE_READ
-            // 
-            this.ONE_LINE_READ.Location = new System.Drawing.Point(432, 321);
-            this.ONE_LINE_READ.Name = "ONE_LINE_READ";
-            this.ONE_LINE_READ.ReadOnly = true;
-            this.ONE_LINE_READ.Size = new System.Drawing.Size(275, 20);
-            this.ONE_LINE_READ.TabIndex = 14;
-            // 
-            // FILE_PATH_BOX
-            // 
-            this.FILE_PATH_BOX.Location = new System.Drawing.Point(432, 295);
-            this.FILE_PATH_BOX.Name = "FILE_PATH_BOX";
-            this.FILE_PATH_BOX.Size = new System.Drawing.Size(275, 20);
-            this.FILE_PATH_BOX.TabIndex = 15;
-            this.FILE_PATH_BOX.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownHandler);
-            // 
-            // STOP_READING_BUTTON
-            // 
-            this.STOP_READING_BUTTON.Location = new System.Drawing.Point(89, 266);
-            this.STOP_READING_BUTTON.Name = "STOP_READING_BUTTON";
-            this.STOP_READING_BUTTON.Size = new System.Drawing.Size(109, 23);
-            this.STOP_READING_BUTTON.TabIndex = 16;
-            this.STOP_READING_BUTTON.Text = "STOP READING";
-            this.STOP_READING_BUTTON.UseVisualStyleBackColor = true;
-            this.STOP_READING_BUTTON.Click += new System.EventHandler(this.STOP_READING_BUTTON_Click);
-            // 
-            // WRITE_ONE_LINE_FILE
-            // 
-            this.WRITE_ONE_LINE_FILE.AutoSize = true;
-            this.WRITE_ONE_LINE_FILE.Location = new System.Drawing.Point(490, 270);
-            this.WRITE_ONE_LINE_FILE.Name = "WRITE_ONE_LINE_FILE";
-            this.WRITE_ONE_LINE_FILE.Size = new System.Drawing.Size(115, 17);
-            this.WRITE_ONE_LINE_FILE.TabIndex = 17;
-            this.WRITE_ONE_LINE_FILE.Text = "WRITE ONE LINE";
-            this.WRITE_ONE_LINE_FILE.UseVisualStyleBackColor = true;
-            // 
             // CLEAR_OUTPUT_BUTTON
             // 
-            this.CLEAR_OUTPUT_BUTTON.Location = new System.Drawing.Point(205, 266);
+            this.CLEAR_OUTPUT_BUTTON.Location = new System.Drawing.Point(387, 304);
             this.CLEAR_OUTPUT_BUTTON.Name = "CLEAR_OUTPUT_BUTTON";
             this.CLEAR_OUTPUT_BUTTON.Size = new System.Drawing.Size(137, 23);
             this.CLEAR_OUTPUT_BUTTON.TabIndex = 18;
@@ -223,27 +96,44 @@
             this.CLEAR_OUTPUT_BUTTON.UseVisualStyleBackColor = true;
             this.CLEAR_OUTPUT_BUTTON.Click += new System.EventHandler(this.CLEAR_OUTPUT_BUTTON_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(185, 309);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Baud Rate:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 309);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "PORT:";
+            // 
+            // BaudRateInputBox
+            // 
+            this.BaudRateInputBox.Location = new System.Drawing.Point(253, 307);
+            this.BaudRateInputBox.Name = "BaudRateInputBox";
+            this.BaudRateInputBox.Size = new System.Drawing.Size(128, 20);
+            this.BaudRateInputBox.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BaudRateInputBox);
             this.Controls.Add(this.CLEAR_OUTPUT_BUTTON);
-            this.Controls.Add(this.WRITE_ONE_LINE_FILE);
-            this.Controls.Add(this.STOP_READING_BUTTON);
-            this.Controls.Add(this.FILE_PATH_BOX);
-            this.Controls.Add(this.ONE_LINE_READ);
-            this.Controls.Add(this.WRITE_TO_FILE_BUTTON);
             this.Controls.Add(this.DISCONNECT_BUTTON);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.SERIAL_WRITE);
             this.Controls.Add(this.WRITE_BUTTON);
-            this.Controls.Add(this.READ_BUTTON);
-            this.Controls.Add(this.SERIAL_READ);
-            this.Controls.Add(this.CONNECT_BUTTON);
+            this.Controls.Add(this.OutputScreenTextView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BAUD_RATES);
             this.Controls.Add(this.COM_NAMES);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -256,22 +146,14 @@
         #endregion
 
         private System.Windows.Forms.ComboBox COM_NAMES;
-        private System.Windows.Forms.ComboBox BAUD_RATES;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button CONNECT_BUTTON;
-        private System.Windows.Forms.TextBox SERIAL_READ;
-        private System.Windows.Forms.Button READ_BUTTON;
+        private System.Windows.Forms.TextBox OutputScreenTextView;
         private System.Windows.Forms.Button WRITE_BUTTON;
         private System.Windows.Forms.TextBox SERIAL_WRITE;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button DISCONNECT_BUTTON;
-        private System.Windows.Forms.Button WRITE_TO_FILE_BUTTON;
-        private System.Windows.Forms.TextBox ONE_LINE_READ;
-        private System.Windows.Forms.TextBox FILE_PATH_BOX;
-        private System.Windows.Forms.Button STOP_READING_BUTTON;
-        private System.Windows.Forms.CheckBox WRITE_ONE_LINE_FILE;
         private System.Windows.Forms.Button CLEAR_OUTPUT_BUTTON;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox BaudRateInputBox;
     }
 }
 
